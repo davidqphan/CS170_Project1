@@ -34,6 +34,8 @@ def general_search(problem, strategy):
 
     nodes = []
     fringe = []
+
+    # push a tuple of cost and the state to the priority queue: nodes
     heappush(nodes,[float('inf'),problem.initial_state])
 
     while True:
@@ -42,10 +44,11 @@ def general_search(problem, strategy):
 
         queue_size = max(queue_size, len(nodes) )
 
+        # pop the tuple from the priority queue, and store each cost and state to cost, node
         cost, node = heappop(nodes)
         fringe.append(node.state)
 
-        print("The best state to expand with a "),
+        print("The best state to expand with a"),
         if strategy == 1:
             print("g(n) = %d and h(n) = %d is ") % (node.depth, 0)
         elif strategy == 2:
@@ -59,7 +62,7 @@ def general_search(problem, strategy):
                 if strategy is 1:
                     heappush(nodes, [child.depth, child])
                 elif strategy is 2:
-                    heappush(nodes, [child.mpt, child])
+                    heappush(nodes, [child.mpt + child.depth, child])
                 else:
                     heappush(nodes, [child.mhd + child.depth, child])
                 expanded += 1

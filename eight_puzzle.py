@@ -18,6 +18,7 @@
 
 import Puzzle
 import re
+import time
 import search
 
 
@@ -34,6 +35,7 @@ goal = Puzzle.Puzzle([ 1, 2, 3,
 
 user_puzzle = []
 
+# parses each row input from the user
 def parse_row(row):
     parsed_row = map(int, re.split(', | ', row))
     for tile in parsed_row:
